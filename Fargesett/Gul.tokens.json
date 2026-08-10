@@ -1,0 +1,138 @@
+{
+  "Emblemfarge": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8117647171020508,
+        0.6274510025978088,
+        0.09803921729326248
+      ],
+      "alpha": 1,
+      "hex": "#CFA019"
+    },
+    "$extensions": {
+      "com.figma.variableId": "VariableID:1:3",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    }
+  },
+  "Text": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 1,
+      "hex": "#000000"
+    },
+    "$extensions": {
+      "com.figma.variableId": "VariableID:1:4",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    }
+  },
+  "Hvit": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 1,
+      "hex": "#FFFFFF"
+    },
+    "$extensions": {
+      "com.figma.variableId": "VariableID:1:5",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    }
+  },
+  "Nyanse 1": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8588235378265381,
+        0.729411780834198,
+        0.24705882370471954
+      ],
+      "alpha": 1,
+      "hex": "#DBBA3F"
+    },
+    "$extensions": {
+      "com.figma.variableId": "VariableID:1:6",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    }
+  },
+  "Nyanse 2": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.875,
+        0.812999963760376,
+        0.625
+      ],
+      "alpha": 1,
+      "hex": "#DFCF9F"
+    },
+    "$extensions": {
+      "com.figma.variableId": "VariableID:1:7",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    }
+  },
+  "Nyanse 3": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.949999988079071,
+        0.9251999855041504,
+        0.8500000238418579
+      ],
+      "alpha": 1,
+      "hex": "#F2ECD9"
+    },
+    "$extensions": {
+      "com.figma.variableId": "VariableID:1:8",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    }
+  },
+  "Markeringsgrå": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8317307829856873,
+        0.8317307829856873,
+        0.8317307829856873
+      ],
+      "alpha": 1,
+      "hex": "#D4D4D4"
+    },
+    "$extensions": {
+      "com.figma.variableId": "VariableID:1:9",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Gul"
+  }
+}

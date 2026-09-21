@@ -23,7 +23,7 @@ unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304
   --cream:#F3F0E2; --cream-l:#FBF9F1; --cream-d:#E8E3CE;
   --lime:#97CA31; --sand:#E3CE98; --terra:#AA523C; --brown:#81512C; --tan:#BD9F79; --grey:#7F877D;
   --ink:#26301C;
-  --fg:var(--ink); --mut:rgba(38,48,28,.62); --line:rgba(63,78,54,.16); --surf:rgba(255,255,255,.55);
+  --fg:var(--ink); --mut:rgba(38,48,28,.62); --line:rgba(63,78,54,.16); --surf:#FFFFFF;
   --ease:cubic-bezier(.16,1,.3,1);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -38,25 +38,12 @@ body{
 .brand{width:262px;height:auto;display:block}
 .ic{width:1em;height:1em;display:block;flex:none}
 
-/* ── ambient background ─────────────────────────────────── */
-#bg{position:fixed;inset:0;background:var(--cream);transition:background-color .62s var(--ease);z-index:0}
+/* ── flat background (ingen gradienter, ingen grain) ────── */
+#bg{position:fixed;inset:0;background:var(--cream);transition:background-color .45s var(--ease);z-index:0}
 #bg.dark{background:var(--green-d)}
 #bg.light{background:var(--cream-l)}
 #bg.alt{background:var(--cream-d)}
 #bg.alarm{background:#65251A}
-#bg.alarm .blob.b1{background:rgba(151,202,49,.16)}
-#bg.alarm .blob.b2{background:rgba(233,167,147,.22)}
-.blob{position:absolute;border-radius:50%;filter:blur(120px);opacity:.5;transition:background-color .8s var(--ease),opacity .8s var(--ease)}
-.blob.b1{width:46vw;height:46vw;left:-8vw;top:-14vw;background:rgba(151,202,49,.22);animation:float1 26s ease-in-out infinite}
-.blob.b2{width:40vw;height:40vw;right:-6vw;bottom:-16vw;background:rgba(227,206,152,.3);animation:float2 32s ease-in-out infinite}
-#bg.dark .blob.b1{background:rgba(151,202,49,.2)}
-#bg.dark .blob.b2{background:rgba(129,81,44,.34)}
-#bg.alt .blob.b1{background:rgba(151,202,49,.16)}
-#bg.alt .blob.b2{background:rgba(189,159,121,.3)}
-@keyframes float1{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(6vw,5vw,0) scale(1.14)}}
-@keyframes float2{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-7vw,-4vw,0) scale(1.1)}}
-#grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.4;mix-blend-mode:soft-light;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* ── stage / deck ───────────────────────────────────────── */
 #stage{position:fixed;inset:0;z-index:2}
@@ -65,7 +52,7 @@ body{
   opacity:0;visibility:hidden;transition:opacity .42s ease,visibility 0s linear .42s}
 .slide.active{opacity:1;visibility:visible;transition:opacity .5s ease,visibility 0s}
 .slide.leaving{opacity:0;visibility:visible;transition:opacity .3s ease}
-.slide.dark{--fg:var(--cream);--mut:rgba(243,240,226,.66);--line:rgba(243,240,226,.16);--surf:rgba(243,240,226,.055);color:var(--cream)}
+.slide.dark{--fg:var(--cream);--mut:rgba(243,240,226,.66);--line:rgba(243,240,226,.16);--surf:#323C26;color:var(--cream)}
 .fill{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0}
 .pushed{margin-top:auto}
 
@@ -108,7 +95,7 @@ b,strong{font-weight:600}
 .slide.dark .delta.good{background:rgba(151,202,49,.2);color:var(--lime)}
 
 /* ── surfaces ───────────────────────────────────────────── */
-.card{background:var(--surf);border:1px solid var(--line);border-radius:26px;padding:34px 36px;
+.card{background:var(--surf);border-radius:26px;padding:34px 36px;
   display:flex;flex-direction:column;gap:16px}
 .card.tight{padding:28px 30px;gap:12px}
 .card.lime{background:rgba(151,202,49,.16);border-color:rgba(151,202,49,.4)}
@@ -283,7 +270,6 @@ b,strong{font-weight:600}
 #ov button span{font-size:15.5px;font-weight:400;line-height:1.3}
 
 @media (prefers-reduced-motion:reduce){
-  .blob{animation:none}
   .slide.active .r,.slide.active .mask>span,.slide.active .bar-fill,
   .slide.active .g-fill,.slide.active .sp-ring,.slide.active .swap-old span::after{
     animation-duration:.01ms!important;animation-delay:0ms!important}
@@ -404,7 +390,7 @@ b,strong{font-weight:600}
 .pv-wrap{display:grid;grid-template-rows:minmax(0,1fr);grid-template-columns:minmax(0,1fr);
   place-items:center;flex:1 1 0;min-height:0;overflow:hidden}
 .pv{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;
-  filter:drop-shadow(0 18px 40px rgba(27,34,20,.16))}
+  border-radius:6px}
 .sw-row{display:flex;align-items:center;gap:15px;flex-wrap:wrap}
 .swm{background:none;border:0;padding:0;cursor:pointer;width:38px;height:38px;border-radius:50%;
   background:var(--c);transition:box-shadow .25s var(--ease),transform .25s var(--ease);flex:none}
@@ -413,6 +399,28 @@ b,strong{font-weight:600}
 .slide.dark .swm.on{box-shadow:0 0 0 4px var(--green-d),0 0 0 6px var(--c)}
 #bg.alt~#stage .swm.on{box-shadow:0 0 0 4px var(--cream-d),0 0 0 6px var(--c)}
 #bg.light~#stage .swm.on{box-shadow:0 0 0 4px var(--cream-l),0 0 0 6px var(--c)}
+
+/* profil-arv */
+.lineage{display:grid;grid-template-columns:1fr 92px 1fr;align-items:stretch}
+.ln{display:flex;flex-direction:column;gap:18px;padding:38px 40px;border-radius:26px;background:var(--surf)}
+.ln-lab{font-size:16px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--lime)}
+.ln-stage{flex:1;display:flex;align-items:center;min-height:126px}
+.ln-brand{width:100%;max-width:292px;height:auto;display:block;color:var(--cream)}
+.ln-lock{display:flex;align-items:center;gap:20px}
+.ln-em{width:78px;height:78px;flex:none;color:var(--cream)}
+.ln-em svg{width:100%;height:100%;display:block}
+.ln-name b{display:block;font-family:'Space Grotesk','Lexend',sans-serif;font-size:34px;
+  font-weight:500;letter-spacing:-.012em;line-height:1.05;color:var(--cream)}
+.ln-name em{display:block;font-family:'Space Grotesk','Lexend',sans-serif;font-style:normal;
+  font-size:17px;font-weight:500;color:var(--cream);opacity:.78;margin-top:7px}
+.ln-mid{display:grid;place-items:center}
+.ln-mid .ic{font-size:38px;color:var(--lime)}
+
+/* emblem-forklaring */
+.emb{width:340px;height:340px;flex:none;color:var(--lime)}
+.emb svg{width:100%;height:100%;display:block}
+.emb-pt{display:flex;gap:22px;align-items:flex-start}
+.emb-pt .num-chip{padding-top:6px;flex:none}
 
 /* liten faktalinje */
 .fact{display:flex;align-items:center;gap:14px;font-size:20px;color:var(--mut)}
@@ -472,16 +480,16 @@ b,strong{font-weight:600}
 <symbol id="i-arrow-forward" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.6721 3.82546C13.9304 3.69995 14.2376 3.73288 14.4634 3.91027L21.4634 9.41027C21.6443 9.55246 21.75 9.76986 21.75 10C21.75 10.2302 21.6443 10.4476 21.4634 10.5897L14.4634 16.0897C14.2376 16.2671 13.9304 16.3001 13.6721 16.1746C13.4139 16.049 13.25 15.7871 13.25 15.5V12.7758C12.2638 12.8446 11.3918 13.0477 10.6206 13.341C8.33572 14.2101 6.86142 15.9026 5.94891 17.4184C5.49417 18.1737 5.18606 18.8739 4.99237 19.3834C4.89571 19.6376 4.82808 19.8429 4.78528 19.9821C4.76389 20.0516 4.74874 20.1045 4.7393 20.1386C4.73458 20.1556 4.73129 20.1679 4.72936 20.1752L4.72761 20.1819L4.72748 20.1824C4.63543 20.5496 4.28413 20.7906 3.90836 20.7444C3.53242 20.6981 3.25 20.3788 3.25 20C3.25 18.3457 3.57247 16.0586 4.47449 13.877C5.37732 11.6935 6.88705 9.55691 9.29669 8.31937C10.4295 7.73759 11.7416 7.36533 13.25 7.27271V4.50001C13.25 4.21289 13.4139 3.95097 13.6721 3.82546ZM5.50535 15.4117C6.54306 14.0679 8.02361 12.724 10.0873 11.939C11.2229 11.5071 12.5218 11.25 14 11.25C14.4142 11.25 14.75 11.5858 14.75 12V13.9569L19.7861 10L14.75 6.0431V8.00001C14.75 8.41422 14.4142 8.75001 14 8.75001C12.3944 8.75001 11.0726 9.09357 9.98196 9.65369C7.98604 10.6788 6.67611 12.478 5.86067 14.4502C5.72896 14.7687 5.61084 15.0902 5.50535 15.4117Z"/></symbol>
 <symbol id="i-briefcase-clock" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.75 5C7.75 4.0335 8.5335 3.25 9.5 3.25H14.5C15.4665 3.25 16.25 4.0335 16.25 5V6.25H21C21.4142 6.25 21.75 6.58579 21.75 7V10C21.75 10.4142 21.4142 10.75 21 10.75C20.5858 10.75 20.25 10.4142 20.25 10V7.75H15.5H8.5H3.75V12.25H4.48721L4.5 12.2499L4.51279 12.25H7.5C7.91421 12.25 8.25 12.5858 8.25 13C8.25 13.4142 7.91421 13.75 7.5 13.75H5.25V18.2499H8.5C8.91421 18.2499 9.25 18.5857 9.25 18.9999C9.25 19.4141 8.91421 19.7499 8.5 19.7499H4.5C4.08579 19.7499 3.75 19.4141 3.75 18.9999V13.75H3C2.58579 13.75 2.25 13.4142 2.25 13V7C2.25 6.58579 2.58579 6.25 3 6.25H7.75V5ZM14.75 5V6.25H9.25V5C9.25 4.86193 9.36193 4.75 9.5 4.75H14.5C14.6381 4.75 14.75 4.86193 14.75 5ZM15 10.75C12.6528 10.75 10.75 12.6528 10.75 15C10.75 17.3472 12.6528 19.25 15 19.25C17.3472 19.25 19.25 17.3472 19.25 15C19.25 12.6528 17.3472 10.75 15 10.75ZM9.25 15C9.25 11.8244 11.8244 9.25 15 9.25C18.1756 9.25 20.75 11.8244 20.75 15C20.75 18.1756 18.1756 20.75 15 20.75C11.8244 20.75 9.25 18.1756 9.25 15ZM15.75 12.5C15.75 12.0858 15.4142 11.75 15 11.75C14.5858 11.75 14.25 12.0858 14.25 12.5V15C14.25 15.1989 14.329 15.3897 14.4697 15.5303L15.4697 16.5303C15.7626 16.8232 16.2374 16.8232 16.5303 16.5303C16.8232 16.2374 16.8232 15.7626 16.5303 15.4697L15.75 14.6893V12.5Z"/></symbol>
 <symbol id="i-emblem" viewBox="0 0 295 295" fill="currentColor"><path d="M147.348 0C228.726 0 294.695 65.9698 294.695 147.348C294.695 228.726 228.726 294.695 147.348 294.695C65.9698 294.695 0 228.726 0 147.348C2.47398e-05 65.9698 65.9698 2.47462e-05 147.348 0ZM78.1602 154.979C76.3458 154.979 74.875 156.449 74.875 158.264V217.741C74.875 219.556 76.3458 221.026 78.1602 221.026H122.47C124.284 221.026 125.755 219.556 125.755 217.741V158.264C125.755 156.449 124.284 154.979 122.47 154.979H78.1602ZM137.477 60.4092C135.325 60.4092 133.754 62.4471 134.295 64.5264L174.425 218.07C174.799 219.526 176.119 220.534 177.616 220.523L223.964 220.315C226.105 220.315 227.664 218.278 227.124 216.199H227.135L187.057 62.8623C186.682 61.4174 185.372 60.4092 183.875 60.4092H137.477ZM100.313 82.8125C84.8339 82.8127 72.2853 95.3613 72.2852 110.841C72.2852 126.32 84.8338 138.87 100.313 138.87C115.793 138.87 128.343 126.321 128.343 110.841C128.343 95.3612 115.793 82.8125 100.313 82.8125Z"/></symbol>
+<symbol id="i-wordmark" viewBox="0 0 2312 501" fill="none"><g clip-path="url(#clip0_177_8107)"><mask id="mask0_177_8107" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="2312" height="501"><path d="M2311.76 0.730469H0.523438V500.73H2311.76V0.730469Z" fill="white"/></mask><g mask="url(#mask0_177_8107)"><path d="M692.174 170.454H628.003C626.629 170.454 625.516 171.568 625.516 172.941V435.148C625.516 436.521 626.629 437.635 628.003 437.635H692.174C693.548 437.635 694.661 436.521 694.661 435.148V172.941C694.661 171.568 693.548 170.454 692.174 170.454Z" fill="currentColor"/><path d="M1976.52 170.454H1912.38C1911 170.454 1909.88 171.576 1909.88 172.959V435.13C1909.88 436.513 1911 437.635 1912.38 437.635H1976.52C1977.9 437.635 1979.02 436.513 1979.02 435.13V172.959C1979.02 171.576 1977.9 170.454 1976.52 170.454Z" fill="currentColor"/><path d="M659.488 138.633C688.48 138.633 711.982 115.13 711.982 86.1387C711.982 57.147 688.48 33.6445 659.488 33.6445C630.497 33.6445 606.994 57.147 606.994 86.1387C606.994 115.13 630.497 138.633 659.488 138.633Z" fill="currentColor"/><path d="M1944.45 138.633C1973.44 138.633 1996.94 115.13 1996.94 86.1387C1996.94 57.147 1973.44 33.6445 1944.45 33.6445C1915.46 33.6445 1891.95 57.147 1891.95 86.1387C1891.95 115.13 1915.46 138.633 1944.45 138.633Z" fill="currentColor"/><path d="M1807.18 175.586C1746.62 139.726 1651.02 158 1618.4 223.882C1585.31 288.389 1597.48 392.089 1666.97 428.02C1724.03 460 1812.93 448.341 1849.09 392.46C1849.76 391.419 1849.55 390.026 1848.61 389.214L1804.41 350.902C1803.21 349.861 1801.41 350.196 1800.6 351.555C1796.21 358.963 1790.56 365.86 1783.67 372.228C1783.6 372.298 1783.53 372.351 1783.45 372.404C1745.8 402.32 1673.03 378.172 1671.62 324.337C1671.59 322.944 1672.73 321.815 1674.13 321.815H1867.36C1868.69 321.815 1869.8 320.774 1869.87 319.451C1873.06 262.918 1857.19 204.409 1807.16 175.569L1807.18 175.586ZM1796.86 270.256H1675.19C1673.58 270.256 1672.42 268.774 1672.73 267.222C1675.64 252.899 1682.22 241.292 1692.49 232.402C1725.58 204.021 1795.36 218.326 1799.35 267.522C1799.47 268.986 1798.32 270.273 1796.86 270.273V270.256Z" fill="currentColor"/><path d="M1250.22 164.333H1232.41C1219.97 164.333 1209.09 166.891 1199.76 172.024C1190.88 176.892 1184.41 184.406 1180.34 194.584C1179.95 195.537 1179.05 196.172 1178.03 196.172H1172.35C1170.97 196.172 1169.86 195.06 1169.86 193.685V172.959C1169.86 171.583 1168.75 170.471 1167.37 170.471H1104.31C1102.94 170.471 1101.82 171.583 1101.82 172.959V435.147C1101.82 436.523 1102.94 437.634 1104.31 437.634H1168.47C1169.84 437.634 1170.95 436.523 1170.95 435.147V282.886C1170.95 263.5 1176.61 249.142 1187.96 239.811C1199.3 230.48 1213.74 225.823 1231.31 225.823H1250.24C1251.62 225.823 1252.73 224.712 1252.73 223.336V166.855C1252.73 165.48 1251.62 164.368 1250.24 164.368L1250.22 164.333Z" fill="currentColor"/><path d="M1361.37 195.625C1360.91 196.295 1360.15 196.719 1359.32 196.719H1353.25C1351.88 196.719 1350.75 195.607 1350.75 194.214V65.5009C1350.75 64.125 1349.64 62.9961 1348.24 62.9961H1284.09C1282.71 62.9961 1281.59 64.1074 1281.59 65.5009V435.147C1281.59 436.523 1282.7 437.652 1284.09 437.652H1337.64C1338.74 437.652 1339.71 436.929 1340.02 435.888L1349.09 406.484C1349.41 405.443 1350.38 404.72 1351.47 404.72H1358.1C1358.99 404.72 1359.78 405.178 1360.24 405.937C1387.26 450.511 1460.92 456.297 1506.04 429.15C1573.36 392.372 1583.34 284.809 1551.04 221.431C1518.76 152.48 1405.41 131.701 1361.35 195.643L1361.37 195.625ZM1349.64 298.902C1349.64 298.902 1349.64 298.761 1349.64 298.691C1346.41 187.599 1508.83 193.12 1498.92 304.177C1498.92 304.247 1498.92 304.335 1498.92 304.406C1502.15 415.55 1339.99 409.782 1349.64 298.92V298.902Z" fill="currentColor"/><path d="M2309.26 62.9961H2245.11C2243.73 62.9961 2242.6 64.1074 2242.6 65.5009V194.214C2242.6 195.59 2241.49 196.719 2240.1 196.719H2234.1C2233.24 196.719 2232.44 196.26 2231.99 195.519C2214.77 167.72 2182.93 157.472 2148.2 157.754C2069.78 156.59 2019.49 229.051 2025.27 305.817C2025.27 305.888 2025.27 305.958 2025.27 306.046C2022.36 380.501 2073.99 446.031 2148.2 445.325C2188.17 445.978 2214.51 433.066 2233.08 405.813C2233.54 405.125 2234.31 404.72 2235.13 404.72H2241.83C2242.92 404.72 2243.89 405.425 2244.21 406.484C2245.96 412.199 2251.53 430.191 2253.29 435.906C2253.61 436.947 2254.58 437.652 2255.67 437.652H2309.23C2310.6 437.652 2311.73 436.541 2311.73 435.147V65.5009C2311.73 64.125 2310.62 62.9961 2309.23 62.9961H2309.26ZM2094.44 298.902C2094.44 298.902 2094.44 298.761 2094.44 298.691C2091.21 187.599 2253.63 193.12 2243.72 304.177C2243.72 304.247 2243.72 304.335 2243.72 304.406C2246.94 415.55 2084.79 409.782 2094.44 298.92V298.902Z" fill="currentColor"/><path d="M980.221 64.8482C979.939 63.7546 978.951 62.9961 977.805 62.9961H850.432C849.303 62.9961 848.316 63.7546 848.016 64.8482L750.859 434.495C750.436 436.082 751.635 437.617 753.276 437.617H822.739C823.885 437.617 824.873 436.841 825.155 435.729L840.025 376.197C840.307 375.086 841.295 374.31 842.442 374.31H985.848C986.995 374.31 987.982 375.086 988.265 376.197L1003.13 435.729C1003.42 436.841 1004.4 437.617 1005.55 437.617H1075.01C1076.65 437.617 1077.84 436.065 1077.43 434.495L980.257 64.8482H980.221ZM967.856 307.334H860.381C858.758 307.334 857.576 305.817 857.964 304.229L903.579 121.47C903.861 120.359 904.849 119.583 905.996 119.583H922.224C923.37 119.583 924.358 120.359 924.64 121.47L970.255 304.229C970.643 305.799 969.461 307.334 967.839 307.334H967.856Z" fill="currentColor"/><path d="M250.523 0.730469C112.444 0.730469 0.523438 112.651 0.523438 250.73C0.523438 388.81 112.444 500.73 250.523 500.73C388.603 500.73 500.523 388.81 500.523 250.73C500.523 112.651 388.603 0.730469 250.523 0.730469ZM217.873 372.811C217.873 374.187 216.762 375.298 215.386 375.298H140.384C138.991 375.298 137.88 374.187 137.88 372.811V270.151C137.88 268.775 138.991 267.646 140.384 267.646H215.386C216.762 267.646 217.873 268.775 217.873 270.151V372.811ZM177.885 243.975C151.656 243.975 130.383 222.702 130.383 196.472C130.383 170.243 151.656 148.97 177.885 148.97C204.115 148.97 225.388 170.243 225.388 196.472C225.388 222.702 204.115 243.975 177.885 243.975ZM385.816 375.298H300.971C299.843 375.298 298.837 374.54 298.555 373.429L235.195 128.42C234.789 126.851 235.989 125.298 237.612 125.298H322.456C323.603 125.298 324.59 126.074 324.873 127.168L388.232 372.176C388.638 373.764 387.456 375.298 385.816 375.298Z" fill="#97CA31"/></g></g><defs><clipPath id="clip0_177_8107"><rect width="2312" height="501" fill="white"/></clipPath></defs></symbol>
 </defs></svg>
 
-<div id="bg" class="dark"><div class="blob b1"></div><div class="blob b2"></div></div>
-<div id="grain"></div>
+<div id="bg" class="dark"></div>
 
 <div id="stage"><div id="deck">
 
 <!-- 1 ─ FORSIDE -->
 <section class="slide dark" data-tone="dark" data-title="iArbeids medlemspakke">
-  <div class="r" data-a="fade"><svg viewBox="0 0 2312 501" class="brand" role="img" aria-label="iArbeid"><g clip-path="url(#clip0_177_8107)"><mask id="mask0_177_8107" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="2312" height="501"><path d="M2311.76 0.730469H0.523438V500.73H2311.76V0.730469Z" fill="white"/></mask><g mask="url(#mask0_177_8107)"><path d="M692.174 170.454H628.003C626.629 170.454 625.516 171.568 625.516 172.941V435.148C625.516 436.521 626.629 437.635 628.003 437.635H692.174C693.548 437.635 694.661 436.521 694.661 435.148V172.941C694.661 171.568 693.548 170.454 692.174 170.454Z" fill="#F3F0E2"/><path d="M1976.52 170.454H1912.38C1911 170.454 1909.88 171.576 1909.88 172.959V435.13C1909.88 436.513 1911 437.635 1912.38 437.635H1976.52C1977.9 437.635 1979.02 436.513 1979.02 435.13V172.959C1979.02 171.576 1977.9 170.454 1976.52 170.454Z" fill="#F3F0E2"/><path d="M659.488 138.633C688.48 138.633 711.982 115.13 711.982 86.1387C711.982 57.147 688.48 33.6445 659.488 33.6445C630.497 33.6445 606.994 57.147 606.994 86.1387C606.994 115.13 630.497 138.633 659.488 138.633Z" fill="#F3F0E2"/><path d="M1944.45 138.633C1973.44 138.633 1996.94 115.13 1996.94 86.1387C1996.94 57.147 1973.44 33.6445 1944.45 33.6445C1915.46 33.6445 1891.95 57.147 1891.95 86.1387C1891.95 115.13 1915.46 138.633 1944.45 138.633Z" fill="#F3F0E2"/><path d="M1807.18 175.586C1746.62 139.726 1651.02 158 1618.4 223.882C1585.31 288.389 1597.48 392.089 1666.97 428.02C1724.03 460 1812.93 448.341 1849.09 392.46C1849.76 391.419 1849.55 390.026 1848.61 389.214L1804.41 350.902C1803.21 349.861 1801.41 350.196 1800.6 351.555C1796.21 358.963 1790.56 365.86 1783.67 372.228C1783.6 372.298 1783.53 372.351 1783.45 372.404C1745.8 402.32 1673.03 378.172 1671.62 324.337C1671.59 322.944 1672.73 321.815 1674.13 321.815H1867.36C1868.69 321.815 1869.8 320.774 1869.87 319.451C1873.06 262.918 1857.19 204.409 1807.16 175.569L1807.18 175.586ZM1796.86 270.256H1675.19C1673.58 270.256 1672.42 268.774 1672.73 267.222C1675.64 252.899 1682.22 241.292 1692.49 232.402C1725.58 204.021 1795.36 218.326 1799.35 267.522C1799.47 268.986 1798.32 270.273 1796.86 270.273V270.256Z" fill="#F3F0E2"/><path d="M1250.22 164.333H1232.41C1219.97 164.333 1209.09 166.891 1199.76 172.024C1190.88 176.892 1184.41 184.406 1180.34 194.584C1179.95 195.537 1179.05 196.172 1178.03 196.172H1172.35C1170.97 196.172 1169.86 195.06 1169.86 193.685V172.959C1169.86 171.583 1168.75 170.471 1167.37 170.471H1104.31C1102.94 170.471 1101.82 171.583 1101.82 172.959V435.147C1101.82 436.523 1102.94 437.634 1104.31 437.634H1168.47C1169.84 437.634 1170.95 436.523 1170.95 435.147V282.886C1170.95 263.5 1176.61 249.142 1187.96 239.811C1199.3 230.48 1213.74 225.823 1231.31 225.823H1250.24C1251.62 225.823 1252.73 224.712 1252.73 223.336V166.855C1252.73 165.48 1251.62 164.368 1250.24 164.368L1250.22 164.333Z" fill="#F3F0E2"/><path d="M1361.37 195.625C1360.91 196.295 1360.15 196.719 1359.32 196.719H1353.25C1351.88 196.719 1350.75 195.607 1350.75 194.214V65.5009C1350.75 64.125 1349.64 62.9961 1348.24 62.9961H1284.09C1282.71 62.9961 1281.59 64.1074 1281.59 65.5009V435.147C1281.59 436.523 1282.7 437.652 1284.09 437.652H1337.64C1338.74 437.652 1339.71 436.929 1340.02 435.888L1349.09 406.484C1349.41 405.443 1350.38 404.72 1351.47 404.72H1358.1C1358.99 404.72 1359.78 405.178 1360.24 405.937C1387.26 450.511 1460.92 456.297 1506.04 429.15C1573.36 392.372 1583.34 284.809 1551.04 221.431C1518.76 152.48 1405.41 131.701 1361.35 195.643L1361.37 195.625ZM1349.64 298.902C1349.64 298.902 1349.64 298.761 1349.64 298.691C1346.41 187.599 1508.83 193.12 1498.92 304.177C1498.92 304.247 1498.92 304.335 1498.92 304.406C1502.15 415.55 1339.99 409.782 1349.64 298.92V298.902Z" fill="#F3F0E2"/><path d="M2309.26 62.9961H2245.11C2243.73 62.9961 2242.6 64.1074 2242.6 65.5009V194.214C2242.6 195.59 2241.49 196.719 2240.1 196.719H2234.1C2233.24 196.719 2232.44 196.26 2231.99 195.519C2214.77 167.72 2182.93 157.472 2148.2 157.754C2069.78 156.59 2019.49 229.051 2025.27 305.817C2025.27 305.888 2025.27 305.958 2025.27 306.046C2022.36 380.501 2073.99 446.031 2148.2 445.325C2188.17 445.978 2214.51 433.066 2233.08 405.813C2233.54 405.125 2234.31 404.72 2235.13 404.72H2241.83C2242.92 404.72 2243.89 405.425 2244.21 406.484C2245.96 412.199 2251.53 430.191 2253.29 435.906C2253.61 436.947 2254.58 437.652 2255.67 437.652H2309.23C2310.6 437.652 2311.73 436.541 2311.73 435.147V65.5009C2311.73 64.125 2310.62 62.9961 2309.23 62.9961H2309.26ZM2094.44 298.902C2094.44 298.902 2094.44 298.761 2094.44 298.691C2091.21 187.599 2253.63 193.12 2243.72 304.177C2243.72 304.247 2243.72 304.335 2243.72 304.406C2246.94 415.55 2084.79 409.782 2094.44 298.92V298.902Z" fill="#F3F0E2"/><path d="M980.221 64.8482C979.939 63.7546 978.951 62.9961 977.805 62.9961H850.432C849.303 62.9961 848.316 63.7546 848.016 64.8482L750.859 434.495C750.436 436.082 751.635 437.617 753.276 437.617H822.739C823.885 437.617 824.873 436.841 825.155 435.729L840.025 376.197C840.307 375.086 841.295 374.31 842.442 374.31H985.848C986.995 374.31 987.982 375.086 988.265 376.197L1003.13 435.729C1003.42 436.841 1004.4 437.617 1005.55 437.617H1075.01C1076.65 437.617 1077.84 436.065 1077.43 434.495L980.257 64.8482H980.221ZM967.856 307.334H860.381C858.758 307.334 857.576 305.817 857.964 304.229L903.579 121.47C903.861 120.359 904.849 119.583 905.996 119.583H922.224C923.37 119.583 924.358 120.359 924.64 121.47L970.255 304.229C970.643 305.799 969.461 307.334 967.839 307.334H967.856Z" fill="#F3F0E2"/><path d="M250.523 0.730469C112.444 0.730469 0.523438 112.651 0.523438 250.73C0.523438 388.81 112.444 500.73 250.523 500.73C388.603 500.73 500.523 388.81 500.523 250.73C500.523 112.651 388.603 0.730469 250.523 0.730469ZM217.873 372.811C217.873 374.187 216.762 375.298 215.386 375.298H140.384C138.991 375.298 137.88 374.187 137.88 372.811V270.151C137.88 268.775 138.991 267.646 140.384 267.646H215.386C216.762 267.646 217.873 268.775 217.873 270.151V372.811ZM177.885 243.975C151.656 243.975 130.383 222.702 130.383 196.472C130.383 170.243 151.656 148.97 177.885 148.97C204.115 148.97 225.388 170.243 225.388 196.472C225.388 222.702 204.115 243.975 177.885 243.975ZM385.816 375.298H300.971C299.843 375.298 298.837 374.54 298.555 373.429L235.195 128.42C234.789 126.851 235.989 125.298 237.612 125.298H322.456C323.603 125.298 324.59 126.074 324.873 127.168L388.232 372.176C388.638 373.764 387.456 375.298 385.816 375.298Z" fill="#97CA31"/></g></g><defs><clipPath id="clip0_177_8107"><rect width="2312" height="501" fill="white"/></clipPath></defs></svg></div>
+  <div class="r" data-a="fade"><svg viewBox="0 0 2312 501" class="brand" role="img" aria-label="iArbeid"><use href="#i-wordmark"/></svg></div>
   <div class="fill col gap-l">
     <h1 class="h1">
       <span class="mask" data-step="105"><span>Medlemspakken</span></span>
@@ -529,7 +537,7 @@ b,strong{font-weight:600}
       <div class="col gap-m">
         <p class="cap r" data-a="right" style="color:var(--fg);font-weight:600">Med profilen kan dere:</p>
         <div class="checks">
-          <div class="check r" data-a="right" data-step="110"><svg class="ic"><use href="#i-checkmark-circle"/></svg><span>Bruke <b>riktig logo, farger og maler</b> uten å tenke på det</span></div>
+          <div class="check r" data-a="right" data-step="110"><svg class="ic"><use href="#i-checkmark-circle"/></svg><span>Bruke <b>riktig logo, farger og maler</b> hver gang</span></div>
           <div class="check r" data-a="right" data-step="110"><svg class="ic"><use href="#i-checkmark-circle"/></svg><span>Fremstå som en del av <b>et tydelig fellesskap</b></span></div>
           <div class="check r" data-a="right" data-step="110"><svg class="ic"><use href="#i-checkmark-circle"/></svg><span>Bygge <b>tillit og gjenkjennelse</b> hos kunder og samarbeidspartnere</span></div>
         </div>
@@ -614,6 +622,73 @@ b,strong{font-weight:600}
 </section>
 
 <!-- 6 ─ LOGOEN -->
+<!-- 5b ─ ARVEN -->
+<section class="slide dark" data-tone="dark" data-title="Profilen finnes allerede">
+  <p class="kicker r">Arven</p>
+  <h2 class="h2 r" style="margin-top:20px">Dere bygger ikke en ny profil.<br>Dere trer inn i en som finnes.</h2>
+  <div class="fill">
+    <div class="lineage r" data-a="rise" style="margin-top:6px">
+      <div class="ln">
+        <span class="ln-lab">Identiteten som finnes</span>
+        <div class="ln-stage">
+          <svg viewBox="0 0 2312 501" class="ln-brand" role="img" aria-label="iArbeid"><use href="#i-wordmark"/></svg>
+        </div>
+        <p class="cap">Emblem, farger, typografi og malverk. Bygget én gang — for hele fellesskapet.</p>
+      </div>
+      <div class="ln-mid"><svg class="ic"><use href="#i-arrow-right"/></svg></div>
+      <div class="ln">
+        <span class="ln-lab">Profilen dere får</span>
+        <div class="ln-stage">
+          <div class="ln-lock">
+            <div class="ln-em"><svg viewBox="0 0 295 295"><use href="#i-emblem"/></svg></div>
+            <div class="ln-name"><b>Bedriftsnavn AS</b><em>En del av iArbeid</em></div>
+          </div>
+        </div>
+        <p class="cap">Samme emblem, samme system. Deres navn og deres fargesett oppå.</p>
+      </div>
+    </div>
+  </div>
+  <p class="lead max-m r" data-gap="40">Emblemet er det eneste som aldri endres.<br>Da er det verdt å vite hva det faktisk betyr.</p>
+</section>
+
+<!-- 5c ─ EMBLEMET -->
+<section class="slide dark" data-tone="dark" data-title="Emblemet">
+  <p class="kicker r">Emblemet</p>
+  <h2 class="h2 r" style="margin-top:20px">Det er ikke bare en i og en A</h2>
+  <div class="fill">
+    <div class="split wide-l" style="margin-top:4px">
+      <div class="row" style="justify-content:center">
+        <div class="emb r" data-a="pop"><svg viewBox="0 0 295 295"><use href="#i-emblem"/></svg></div>
+      </div>
+      <div class="col gap-l">
+        <div class="emb-pt r" data-a="right" data-step="140">
+          <span class="num-chip">01</span>
+          <div class="col gap-s">
+            <p class="h3">Bokstavene</p>
+            <p class="body s">i og A for iArbeid.<br>Den lesningen er riktig.<br>Men den er ikke hele historien.</p>
+          </div>
+        </div>
+        <div class="emb-pt r" data-a="right" data-step="140">
+          <span class="num-chip">02</span>
+          <div class="col gap-s">
+            <p class="h3">Noe å støtte seg til</p>
+            <p class="body s">Prikken og staven står som et menneske.<br>Formen ved siden av reiser seg og bærer.<br>Det er støtten — noe stødig å lene seg på.</p>
+          </div>
+        </div>
+        <div class="emb-pt r" data-a="right" data-step="140">
+          <span class="num-chip">03</span>
+          <div class="col gap-s">
+            <p class="h3">Og det går oppover</p>
+            <p class="body s">Støtten skrår oppover, ikke rett til værs.<br>Ingen skal bli stående i ro.<br>Målet er veien videre, i sitt eget tempo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="cap r">Derfor er emblemet felles for alle medlemsbedriftene.<br>Det er det samme løftet, uansett hvem som bærer det.</p>
+</section>
+
+<!-- 6 ─ ELEMENTER I LOGOEN -->
 <section class="slide" data-tone="light" data-title="Elementer i logoen">
   <p class="kicker r">Logoen</p>
   <h2 class="h2 r" style="margin-top:20px">Slik er logoen bygget opp</h2>
@@ -700,7 +775,7 @@ b,strong{font-weight:600}
         <p class="lead r" data-a="left">Alt dere trenger for å se profesjonelle ut, fra første møte til den daglige e-posten.</p>
         <p class="cap r" data-a="left">Engangssum. Ingen løpende kostnad.</p>
       </div>
-      <div class="card lime col gap-s r" data-a="right">
+      <div class="card col gap-s r" data-a="right">
         <p class="cap" style="color:var(--fg)">Dette får dere</p>
         <div class="checks" style="gap:13px">
           <div class="check"><svg class="ic"><use href="#i-checkmark-circle"/></svg><span>Logo i alle formater</span></div>
@@ -721,7 +796,7 @@ b,strong{font-weight:600}
   <h2 class="h2 r" style="margin-top:20px">To pakker som står på egne bein</h2>
   <div class="fill">
     <div class="g2" style="margin-top:12px;gap:34px">
-      <div class="card lime col gap-m r" data-a="rise" data-step="150">
+      <div class="card col gap-m r" data-a="rise" data-step="150">
         <div class="row" style="gap:18px">
           <div class="badge lime"><svg class="ic"><use href="#i-globe"/></svg></div>
           <span class="pill">02 · Nettpakke</span>
@@ -740,6 +815,37 @@ b,strong{font-weight:600}
     </div>
   </div>
   <p class="lead max-m r" data-gap="60">Begge kan bestilles alene. Har dere en profil dere er fornøyd med, kjøper dere bare den pakken dere trenger.</p>
+</section>
+
+<!-- 10b ─ NETTPAKKE: SLIK ER DEN BYGGET -->
+<section class="slide" data-tone="alt" data-title="Slik er nettsiden bygget">
+  <p class="kicker r">Nettpakke</p>
+  <h2 class="h2 r" style="margin-top:20px">Én mal i bunn. Alle drar nytte av den.</h2>
+  <div class="fill col gap-m" style="margin-top:6px">
+    <div class="g3" style="margin-top:8px;align-items:start">
+      <div class="card col gap-s r" data-a="rise" data-step="130">
+        <div class="badge lime"><svg class="ic"><use href="#i-arrows-circlepath"/></svg></div>
+        <p class="h3">Forbedringer gjelder alle</p>
+        <p class="body s">Nettsiden bygger på en felles mal. Gjør vi en forbedring ett sted, får alle medlemsbedriftene den — uten at dere må bestille noe.</p>
+      </div>
+      <div class="card col gap-s r" data-a="rise" data-step="130">
+        <div class="badge sand"><svg class="ic"><use href="#i-wheelchair"/></svg></div>
+        <p class="h3">Universelt utformet</p>
+        <p class="body s">Malen følger kravene til universell utforming. Kontrast, tekststørrelse, tastaturnavigasjon og skjermleser er løst i bunnen.</p>
+      </div>
+      <div class="card col gap-s r" data-a="rise" data-step="130">
+        <div class="badge green"><svg class="ic"><use href="#i-cog"/></svg></div>
+        <p class="h3">Enkel å bruke</p>
+        <p class="body s">Dere bytter tekst og bilder i et verktøy som ligner Word. Ingenting kan knekke designet, uansett hvem som logger inn.</p>
+      </div>
+    </div>
+    <div class="row gap-l r" data-gap="40" style="margin-top:8px;flex-wrap:wrap">
+      <span class="fact"><svg class="ic"><use href="#i-checkmark-circle"/></svg>Fungerer på mobil, nettbrett og PC</span>
+      <span class="fact"><svg class="ic"><use href="#i-checkmark-circle"/></svg>Sikkerhet og oppdateringer er vårt ansvar</span>
+      <span class="fact"><svg class="ic"><use href="#i-checkmark-circle"/></svg>Dere eier innholdet og domenet</span>
+    </div>
+  </div>
+  <p class="cap r">Dere får et ferdig system å fylle — ikke et prosjekt dere må vedlikeholde alene.</p>
 </section>
 
 <!-- 11 ─ NETTPAKKE -->
@@ -767,10 +873,10 @@ b,strong{font-weight:600}
   </div>
 </section>
 
-<!-- 12 ─ ÅRSRAPPORTPAKKE -->
+<!-- 12 ─ NETTPAKKE -->
 <section class="slide" data-tone="light" data-title="02 Nettpakke">
   <div class="row r" style="gap:18px;align-items:center">
-    <span class="pill sand">02 · Nettpakke</span>
+    <span class="pill">02 · Nettpakke</span>
     <span class="rule" style="flex:1"></span>
     <span class="cap">Kan bestilles alene</span>
   </div>
@@ -794,6 +900,37 @@ b,strong{font-weight:600}
     </div>
   </div>
   <p class="cap r">Dere leverer tekst og bilder, og eier domenet selv.</p>
+</section>
+
+<!-- 12b ─ ÅRSRAPPORT: SLIK ER DEN BYGGET -->
+<section class="slide" data-tone="alt" data-title="Slik er årsrapporten bygget">
+  <p class="kicker r">Årsrapportpakke</p>
+  <h2 class="h2 r" style="margin-top:20px">Ferdige sidemaler som hører sammen</h2>
+  <div class="fill col gap-m" style="margin-top:6px">
+    <div class="g3" style="margin-top:8px;align-items:start">
+      <div class="card col gap-s r" data-a="rise" data-step="130">
+        <div class="badge sand"><svg class="ic"><use href="#i-layers"/></svg></div>
+        <p class="h3">Flere layouter, ett system</p>
+        <p class="body s">Forside, nøkkeltall, tekstoppslag, bildeoppslag, tabeller og grafer. Dere setter sammen rapporten av sider som allerede snakker samme språk.</p>
+      </div>
+      <div class="card col gap-s r" data-a="rise" data-step="130">
+        <div class="badge lime"><svg class="ic"><use href="#i-arrows-circlepath"/></svg></div>
+        <p class="h3">Forbedringer gjelder alle</p>
+        <p class="body s">Også årsrapporten bygger på én felles mal. Blir en side bedre, blir den bedre for alle medlemsbedriftene — også til neste år.</p>
+      </div>
+      <div class="card col gap-s r" data-a="rise" data-step="130">
+        <div class="badge green"><svg class="ic"><use href="#i-clock"/></svg></div>
+        <p class="h3">Neste år er en oppdatering</p>
+        <p class="body s">Malen ligger klar. Året etter er det tallene og tekstene som byttes — ikke hele designet som lages på nytt.</p>
+      </div>
+    </div>
+    <div class="row gap-l r" data-gap="40" style="margin-top:8px;flex-wrap:wrap">
+      <span class="fact"><svg class="ic"><use href="#i-checkmark-circle"/></svg>Samme farger og logo som resten av profilen</span>
+      <span class="fact"><svg class="ic"><use href="#i-checkmark-circle"/></svg>Klar for både trykk og nett</span>
+      <span class="fact"><svg class="ic"><use href="#i-checkmark-circle"/></svg>Leservennlig for styret og eierne</span>
+    </div>
+  </div>
+  <p class="cap r">Dere leverer tall og tekst. Vi setter det inn i et oppsett som allerede er gjennomtenkt.</p>
 </section>
 
 <section class="slide" data-tone="alt" data-title="Slik ser årsrapporten ut">

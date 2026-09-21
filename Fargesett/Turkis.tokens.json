@@ -4,12 +4,12 @@
     "$value": {
       "colorSpace": "srgb",
       "components": [
-        0.886274516582489,
-        0.3686274588108063,
-        0
+        0,
+        0.41960784792900085,
+        0.41960784792900085
       ],
       "alpha": 1,
-      "hex": "#E25E00"
+      "hex": "#006B6B"
     },
     "$extensions": {
       "com.figma.variableId": "VariableID:1:11183",
@@ -61,12 +61,12 @@
     "$value": {
       "colorSpace": "srgb",
       "components": [
-        1,
-        0.49235999584198,
-        0.019999999552965164
+        0,
+        0.5607843399047852,
+        0.5490196347236633
       ],
       "alpha": 1,
-      "hex": "#FF7E05"
+      "hex": "#008F8C"
     },
     "$extensions": {
       "com.figma.variableId": "VariableID:1:11186",
@@ -80,12 +80,12 @@
     "$value": {
       "colorSpace": "srgb",
       "components": [
-        0.9312483668327332,
-        0.656474232673645,
-        0.48566868901252747
+        0.4470588266849518,
+        0.7803921699523926,
+        0.7647058963775635
       ],
       "alpha": 1,
-      "hex": "#EDA77C"
+      "hex": "#72C7C3"
     },
     "$extensions": {
       "com.figma.variableId": "VariableID:1:11187",
@@ -99,12 +99,12 @@
     "$value": {
       "colorSpace": "srgb",
       "components": [
-        0.9764178991317749,
-        0.8821691870689392,
-        0.823582112789154
+        0.8470588326454163,
+        0.9411764740943909,
+        0.9333333373069763
       ],
       "alpha": 1,
-      "hex": "#F9E1D2"
+      "hex": "#D8F0EE"
     },
     "$extensions": {
       "com.figma.variableId": "VariableID:1:11188",
@@ -133,6 +133,6 @@
     }
   },
   "$extensions": {
-    "com.figma.modeName": "Oransje"
+    "com.figma.modeName": "Turkis"
   }
 }

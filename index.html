@@ -747,6 +747,7 @@ b,strong{font-weight:600}
       <div class="sw-row">
         <button class="swm" data-n="Lilla" data-c="#5C2D91" data-c2="#7B3FB5" data-c3="#EDE4F6" style="--c:#5C2D91" title="Lilla"></button>
         <button class="swm" data-n="Blå" data-c="#0F4C75" data-c2="#1F6FA3" data-c3="#D9E9F2" style="--c:#0F4C75" title="Blå"></button>
+        <button class="swm" data-n="Turkis" data-c="#006B6B" data-c2="#008F8C" data-c3="#D8F0EE" style="--c:#006B6B" title="Turkis"></button>
         <button class="swm" data-n="Grønn" data-c="#2E5B2A" data-c2="#5B8F42" data-c3="#E2EEDD" style="--c:#2E5B2A" title="Grønn"></button>
         <button class="swm" data-n="Gul" data-c="#CFA019" data-c2="#DBBA3F" data-c3="#F2ECD9" style="--c:#CFA019" title="Gul"></button>
         <button class="swm" data-n="Oransje" data-c="#E25E00" data-c2="#FF7E05" data-c3="#F9E1D2" style="--c:#E25E00" title="Oransje"></button>
@@ -757,7 +758,7 @@ b,strong{font-weight:600}
     </div>
   </div>
   <div class="pv-wrap r" data-a="fade" style="margin-top:14px">
-    <img class="pv" data-pkg="Identitetspakke" alt="Velg ett fargesett">
+    <img class="pv" data-pkg="Identitetspakke" src="Pakker/Identitetspakke-Brun.png" alt="Velg ett fargesett">
   </div>
   <p class="cap r">Trykk på en farge. Logo, maler og bakgrunner bytter med.</p>
 </section>
@@ -859,6 +860,7 @@ b,strong{font-weight:600}
       <div class="sw-row">
         <button class="swm" data-n="Lilla" data-c="#5C2D91" data-c2="#7B3FB5" data-c3="#EDE4F6" style="--c:#5C2D91" title="Lilla"></button>
         <button class="swm" data-n="Blå" data-c="#0F4C75" data-c2="#1F6FA3" data-c3="#D9E9F2" style="--c:#0F4C75" title="Blå"></button>
+        <button class="swm" data-n="Turkis" data-c="#006B6B" data-c2="#008F8C" data-c3="#D8F0EE" style="--c:#006B6B" title="Turkis"></button>
         <button class="swm" data-n="Grønn" data-c="#2E5B2A" data-c2="#5B8F42" data-c3="#E2EEDD" style="--c:#2E5B2A" title="Grønn"></button>
         <button class="swm" data-n="Gul" data-c="#CFA019" data-c2="#DBBA3F" data-c3="#F2ECD9" style="--c:#CFA019" title="Gul"></button>
         <button class="swm" data-n="Oransje" data-c="#E25E00" data-c2="#FF7E05" data-c3="#F9E1D2" style="--c:#E25E00" title="Oransje"></button>
@@ -869,7 +871,7 @@ b,strong{font-weight:600}
     </div>
   </div>
   <div class="pv-wrap r" data-a="fade" style="margin-top:44px">
-    <img class="pv" data-pkg="Nettpakke" alt="Slik ser nettsiden ut">
+    <img class="pv" data-pkg="Nettpakke" src="Pakker/Nettpakke-Brun.png" alt="Slik ser nettsiden ut">
   </div>
 </section>
 
@@ -943,6 +945,7 @@ b,strong{font-weight:600}
       <div class="sw-row">
         <button class="swm" data-n="Lilla" data-c="#5C2D91" data-c2="#7B3FB5" data-c3="#EDE4F6" style="--c:#5C2D91" title="Lilla"></button>
         <button class="swm" data-n="Blå" data-c="#0F4C75" data-c2="#1F6FA3" data-c3="#D9E9F2" style="--c:#0F4C75" title="Blå"></button>
+        <button class="swm" data-n="Turkis" data-c="#006B6B" data-c2="#008F8C" data-c3="#D8F0EE" style="--c:#006B6B" title="Turkis"></button>
         <button class="swm" data-n="Grønn" data-c="#2E5B2A" data-c2="#5B8F42" data-c3="#E2EEDD" style="--c:#2E5B2A" title="Grønn"></button>
         <button class="swm" data-n="Gul" data-c="#CFA019" data-c2="#DBBA3F" data-c3="#F2ECD9" style="--c:#CFA019" title="Gul"></button>
         <button class="swm" data-n="Oransje" data-c="#E25E00" data-c2="#FF7E05" data-c3="#F9E1D2" style="--c:#E25E00" title="Oransje"></button>
@@ -953,7 +956,7 @@ b,strong{font-weight:600}
     </div>
   </div>
   <div class="pv-wrap r" data-a="fade" style="margin-top:14px">
-    <img class="pv" data-pkg="Årsrapportpakke" alt="Slik ser årsrapporten ut">
+    <img class="pv" data-pkg="Årsrapportpakke" src="Pakker/Årsrapportpakke-Brun.png" alt="Slik ser årsrapporten ut">
   </div>
 </section>
 
@@ -1272,8 +1275,7 @@ b,strong{font-weight:600}
 
 <script>
 var PV_DIR='Pakker/', PV_EXT='.png';
-  var PV_V=Date.now();
-  function pvSrc(pkg,farge){ return PV_DIR+pkg+'-'+farge+PV_EXT+'?v='+PV_V; }
+  function pvSrc(pkg,farge){ return PV_DIR+pkg+'-'+farge+PV_EXT; }
 (function(){
   var cur='Brun';
   function paint(){
